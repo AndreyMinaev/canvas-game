@@ -1,0 +1,16 @@
+{
+  "name": "canvas-game",
+  "version": "0.0.0",
+  "description": "Simple canvas-based game engine",
+  "private": true,
+  "author": {
+    "name": "Andrey Minaev",
+    "email": "andreyminaev13@gmail.ru"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.0.1",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

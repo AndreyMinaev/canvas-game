@@ -1,5 +1,14 @@
 var Shape = require('./shapes').Shape;
 
+/**
+ * 
+ * @param {object} options
+ * @property {number} tileSize.
+ * @property {?(number[][])} tileSet.
+ * @property {?object} tileMap.
+ * @constructor
+ * @augments Shape
+ */
 function Layout(options) {
 	var that = this;
 
@@ -18,6 +27,13 @@ function Layout(options) {
 Layout.prototype = Object.create(Shape.prototype, {
 
 	loadTileSet: {
+
+		/**
+		 * 
+		 * @function loadTileSet
+		 * @param {number[][]} tileSet
+		 * @memberof Layout#
+		 */
 		value: function (tileSet) {
 			if (tileSet instanceof Array) {
 				this.tileSet = tileSet.slice(0);
@@ -29,6 +45,14 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	loadTileMap: {
+
+		/**
+		 * 
+		 * @function loadTileMap
+		 * @param {string} src
+		 * @param {function} callback
+		 * @memberof Layout#
+		 */
 		value: function (src, callback) {
 			var that = this,
 				image = new Image();
@@ -44,6 +68,13 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	render: {
+
+		/**
+		 * Draw shape in context
+		 * @function render
+		 * @param {object} ctx - The context in which you need to draw
+		 * @memberof Layout#
+		 */
 		value: function (ctx) {
 			var that = this;
 
@@ -62,6 +93,13 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	updateCache: {
+
+		/**
+		 * 
+		 * @function updateCache
+		 * @param {number[][]} [tiles] - Set of changed tiles
+		 * @memberof Layout#
+		 */
 		value: function (tiles) {
 			var that = this;
 
@@ -81,6 +119,14 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	clearTile: {
+
+		/**
+		 * 
+		 * @function clearTile
+		 * @param {number} x
+		 * @param {number} y
+		 * @memberof Layout#
+		 */
 		value: function (x, y) {
 			var that = this;
 
@@ -95,6 +141,14 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	renderTile: {
+
+		/**
+		 * 
+		 * @function renderTile
+		 * @param {number} x
+		 * @param {number} y
+		 * @memberof Layout#
+		 */
 		value: function (x, y) {
 			var
 				that = this,
@@ -116,6 +170,14 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	getTileNeighbors: {
+
+		/**
+		 * 
+		 * @function getTileNeighbors
+		 * @param {number} x
+		 * @param {number} y
+		 * @memberof Layout#
+		 */
 		value: function (x, y) {
 			var that = this,
 				result = [
@@ -136,6 +198,14 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	getTile: {
+
+		/**
+		 * 
+		 * @function getTile
+		 * @param {number} x
+		 * @param {number} y
+		 * @memberof Layout#
+		 */
 		value: function (x, y) {
 			var 
 				x = (x + this.width) % this.width,

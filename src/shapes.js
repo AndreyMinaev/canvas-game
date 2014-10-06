@@ -2,6 +2,16 @@ function getDecimal(number) {
 	return +(number % 1).toFixed(9);
 }
 
+
+/**
+ * Basic shape with coordinates and sizes.
+ * @param {object} options
+ * @property {number} x.
+ * @property {number} y.
+ * @property {number} width.
+ * @property {number} height.
+ * @constructor
+ */
 function Shape(options) {
 	options = options || {};
 
@@ -11,10 +21,20 @@ function Shape(options) {
 	this.height = options.height || 0;
 }
 
+/** Draw shape in context(abstract method) */
 Shape.prototype.render = function () {
 	throw Error('Method must be overridden');
 };
 
+/**
+ * Shape with method for drawing as a rectangle.
+ * @param {object} options
+ * @property {string} fillStyle.
+ * @property {string} strokeStyle.
+ * @property {number} lineWidth.
+ * @constructor
+ * @augments Shape
+ */
 function Restangle(options) {
 	Shape.apply(this, arguments);
 
@@ -27,6 +47,13 @@ function Restangle(options) {
 
 Restangle.prototype = Object.create(Shape.prototype, {
 	render: {
+
+		/**
+		 * Draw shape in context
+		 * @function render
+		 * @param {object} ctx - The context in which you need to draw
+		 * @memberof Restangle#
+		 */
 		value: function (ctx) {
 			var lineOffset = getDecimal(this.lineWidth/2);
 

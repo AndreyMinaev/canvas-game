@@ -1,6 +1,15 @@
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.canvasGame=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var Shape = require('./shapes').Shape;
 
+/**
+ * 
+ * @param {object} options
+ * @property {number} tileSize.
+ * @property {?(number[][])} tileSet.
+ * @property {?object} tileMap.
+ * @constructor
+ * @augments Shape
+ */
 function Layout(options) {
 	var that = this;
 
@@ -19,6 +28,13 @@ function Layout(options) {
 Layout.prototype = Object.create(Shape.prototype, {
 
 	loadTileSet: {
+
+		/**
+		 * 
+		 * @function loadTileSet
+		 * @param {number[][]} tileSet
+		 * @memberof Layout#
+		 */
 		value: function (tileSet) {
 			if (tileSet instanceof Array) {
 				this.tileSet = tileSet.slice(0);
@@ -30,6 +46,14 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	loadTileMap: {
+
+		/**
+		 * 
+		 * @function loadTileMap
+		 * @param {string} src
+		 * @param {function} callback
+		 * @memberof Layout#
+		 */
 		value: function (src, callback) {
 			var that = this,
 				image = new Image();
@@ -45,6 +69,13 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	render: {
+
+		/**
+		 * Draw shape in context
+		 * @function render
+		 * @param {object} ctx - The context in which you need to draw
+		 * @memberof Layout#
+		 */
 		value: function (ctx) {
 			var that = this;
 
@@ -63,6 +94,13 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	updateCache: {
+
+		/**
+		 * 
+		 * @function updateCache
+		 * @param {number[][]} [tiles] - Set of changed tiles
+		 * @memberof Layout#
+		 */
 		value: function (tiles) {
 			var that = this;
 
@@ -82,6 +120,14 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	clearTile: {
+
+		/**
+		 * 
+		 * @function clearTile
+		 * @param {number} x
+		 * @param {number} y
+		 * @memberof Layout#
+		 */
 		value: function (x, y) {
 			var that = this;
 
@@ -96,6 +142,14 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	renderTile: {
+
+		/**
+		 * 
+		 * @function renderTile
+		 * @param {number} x
+		 * @param {number} y
+		 * @memberof Layout#
+		 */
 		value: function (x, y) {
 			var
 				that = this,
@@ -117,6 +171,14 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	getTileNeighbors: {
+
+		/**
+		 * 
+		 * @function getTileNeighbors
+		 * @param {number} x
+		 * @param {number} y
+		 * @memberof Layout#
+		 */
 		value: function (x, y) {
 			var that = this,
 				result = [
@@ -137,6 +199,14 @@ Layout.prototype = Object.create(Shape.prototype, {
 	},
 
 	getTile: {
+
+		/**
+		 * 
+		 * @function getTile
+		 * @param {number} x
+		 * @param {number} y
+		 * @memberof Layout#
+		 */
 		value: function (x, y) {
 			var 
 				x = (x + this.width) % this.width,
@@ -256,6 +326,16 @@ function getDecimal(number) {
 	return +(number % 1).toFixed(9);
 }
 
+
+/**
+ * Basic shape with coordinates and sizes.
+ * @param {object} options
+ * @property {number} x.
+ * @property {number} y.
+ * @property {number} width.
+ * @property {number} height.
+ * @constructor
+ */
 function Shape(options) {
 	options = options || {};
 
@@ -265,10 +345,20 @@ function Shape(options) {
 	this.height = options.height || 0;
 }
 
+/** Draw shape in context(abstract method) */
 Shape.prototype.render = function () {
 	throw Error('Method must be overridden');
 };
 
+/**
+ * Shape with method for drawing as a rectangle.
+ * @param {object} options
+ * @property {string} fillStyle.
+ * @property {string} strokeStyle.
+ * @property {number} lineWidth.
+ * @constructor
+ * @augments Shape
+ */
 function Restangle(options) {
 	Shape.apply(this, arguments);
 
@@ -281,6 +371,13 @@ function Restangle(options) {
 
 Restangle.prototype = Object.create(Shape.prototype, {
 	render: {
+
+		/**
+		 * Draw shape in context
+		 * @function render
+		 * @param {object} ctx - The context in which you need to draw
+		 * @memberof Restangle#
+		 */
 		value: function (ctx) {
 			var lineOffset = getDecimal(this.lineWidth/2);
 

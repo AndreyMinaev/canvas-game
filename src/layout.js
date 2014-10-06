@@ -16,8 +16,6 @@ function Layout(options) {
 
 	options = options || {};
 
-	that.x = options.x || 0;
-	that.y = options.y || 0;
 	that.tileSize = options.tileSize || 10;
 	that.tileSet = null;
 	that.tileMap = null;

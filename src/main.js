@@ -1,16 +1,10 @@
 var
 	shapes = require('./shapes'),
 	Shape = shapes.Shape,
-	Rectangle = shapes.Rectangle,
-	Polygon = shapes.Polygon,
-	Point = shapes.Point,
 	Layout = require('./layout');
 
-Game.Shape = Shape;
-Game.Rectangle = Rectangle;
-Game.Polygon = Polygon;
-Game.Point = Point;
-Game.Layout = Layout;
+// assign secondary constructors on main constructor as static methods
+_.extend(Game, shapes, { Layout: Layout });
 
 function Game(options) {
 	var that = this;

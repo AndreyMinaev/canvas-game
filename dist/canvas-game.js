@@ -222,11 +222,11 @@ module.exports = Layout;
 var
 	shapes = require('./shapes'),
 	Shape = shapes.Shape,
-	Restangle = shapes.Restangle,
+	Rectangle = shapes.Rectangle,
 	Layout = require('./layout');
 
 Game.Shape = Shape;
-Game.Restangle = Restangle;
+Game.Rectangle = Rectangle;
 Game.Layout = Layout;
 
 function Game(options) {
@@ -359,7 +359,7 @@ Shape.prototype.render = function () {
  * @constructor
  * @augments Shape
  */
-function Restangle(options) {
+function Rectangle(options) {
 	Shape.apply(this, arguments);
 
 	options = options || {};
@@ -369,14 +369,14 @@ function Restangle(options) {
 	this.lineWidth = options.lineWidth || 1.0;
 }
 
-Restangle.prototype = Object.create(Shape.prototype, {
+Rectangle.prototype = Object.create(Shape.prototype, {
 	render: {
 
 		/**
 		 * Draw shape in context
 		 * @function render
 		 * @param {object} ctx - The context in which you need to draw
-		 * @memberof Restangle#
+		 * @memberof Rectangle#
 		 */
 		value: function (ctx) {
 			var lineOffset = getDecimal(this.lineWidth/2);
@@ -396,7 +396,7 @@ Restangle.prototype = Object.create(Shape.prototype, {
 
 module.exports = {
 	Shape: Shape,
-	Restangle: Restangle
+	Rectangle: Rectangle
 }
 },{}]},{},[2])(2)
 });

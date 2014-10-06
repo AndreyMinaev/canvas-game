@@ -14,7 +14,7 @@
 			width: GAME_WIDTH * TILE_SIZE,
 			height: GAME_HEIGHT * TILE_SIZE
 		}),
-		cursor = new Game.Restangle({
+		cursor = new Game.Rectangle({
 			width: TILE_SIZE,
 			height: TILE_SIZE,
 			lineWidth: 2,

@@ -1,11 +1,11 @@
 var
 	shapes = require('./shapes'),
 	Shape = shapes.Shape,
-	Restangle = shapes.Restangle,
+	Rectangle = shapes.Rectangle,
 	Layout = require('./layout');
 
 Game.Shape = Shape;
-Game.Restangle = Restangle;
+Game.Rectangle = Rectangle;
 Game.Layout = Layout;
 
 function Game(options) {
